@@ -1,0 +1,54 @@
+
+/* ---- Element Styles ---- */
+
+* {
+    background-color: darkgreen;
+}
+
+li {
+    line-height: 1.3em;
+    list-style-type: none;
+}
+
+/* ---- ID styles ---- */
+
+#mainTitle {
+    text-align: center;
+    background-color: darkred;
+}
+
+
+#categories {
+    float: right;
+    font-weight: 700;
+    margin-right: 5%;
+    line-height: 10px;
+    border: 5px darkred solid;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* ---- Class Styles ---- */
+
+.button {
+    padding: 20px;
+    margin: 10px;
+    background-color: darkred;
+    font-size: 2rem;
+    font-weight: 800
+}
+
+.diceDisplay {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 12%;
+    margin-top: 5%;
+}
+
+.diceDisplay img {
+    max-width: 50px;
+}
+
+.wrapper {
+    min-height: calc(100vh - 71px);
+}

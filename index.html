@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Dice Game</Title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1 id="mainTitle">Dice Game</h1>
+            
+            <!-- Display dice combinations -->
+            <div id="categories">
+                <h2>Categories:</h2>
+                <ul>
+                    <li id="ones">Ones</li>
+                    <li id="twos">Twos</li>
+                    <li id="threes">Threes</li>
+                    <li id="fours">Fours</li>
+                    <li id="fives">Fives</li>
+                    <li id="sixes">Sixes</li>
+                    <li id="threeKind">Three of a kind</li>
+                    <li id="fourKind">Four of a Kind</li>
+                    <li id="fullHouse">Full House</li>
+                    <li id="sStraight">Small Straight</li>
+                    <li id="lStraight">Large Straight</li>
+                    <li id="chance">Chance</li>
+                    <li id="fiveKind">Five of a kind</li>
+                    <li id="fiveKind2">Five again!!</li>
+                </ul>
+            </div>
+
+            <!-- Buttons -->
+            <div>
+                <button id="rollButton" class="button">Roll!</button>
+                <button id="acceptButton" class="button">Accept Roll</button>
+                <!-- Add reset game button -->
+            </div>
+            
+            <div id="scoreBlock">
+                <h2>Score:</h2>
+                <h2 id="gameScore">0</h2>
+            </div>
+
+            <!-- Display dice roll --> 
+            <h2>You Rolled: </h2>   
+            <div class="diceDisplay">
+                <img src="img/die1.jpg" alt="One" id="d1"></img>
+                <img src="img/die1.jpg" alt="One" id="d2"></img>
+                <img src="img/die1.jpg" alt="One" id="d3"></img>
+                <img src="img/die1.jpg" alt="One" id="d4"></img>
+                <img src="img/die1.jpg" alt="One" id="d5"></img>
+            </div>
+            
+            <script src="app.js"></script>
+        </div>
+    </body>
+    <footer>
+        <p>Built and designed as a test project. Not intended for distribution or public use.</p>
+    </footer>
+</html>
