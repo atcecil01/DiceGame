@@ -3,7 +3,7 @@
 //Selecting dice before first roll results in 6s?///////////////////////////////////////////////////////////////////////
 
 //Define variables
-var roll1, roll2, roll3, roll4, roll5;
+var roll = []
 var rollCount = 0;
 var score = 0;
 var roundScore = 0;
@@ -11,6 +11,7 @@ var roundScore = 0;
 // Define boolean variable to freeze selected dice during next roll
 
 // Try defining frozen dice using an array or object ///////////////////////////////////////////////////////////////////
+
 var d1frozen = false;
 var d2frozen = false;
 var d3frozen = false;
@@ -21,14 +22,6 @@ var d5frozen = false;
 var rollButton = document.getElementById("rollButton");
 
 var die = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3'), document.getElementById('d4'), document.getElementById('d5')]
-/*
-var die1 = document.getElementById("d1");
-var die2 = document.getElementById("d2");
-var die3 = document.getElementById("d3");
-var die4 = document.getElementById("d4");
-var die5 = document.getElementById("d5");
-*/
-
 
 //Load categories elements into variables
 var ones = document.getElementById("ones");
@@ -98,19 +91,19 @@ function rollDice() {
     // Math.random to get a random number between 1 and 6
     if (rollCount < 3) {
         if (d1frozen === false) {
-            roll1 = Math.floor(Math.random()*(6)+1);
+            roll[0] = Math.floor(Math.random()*(6)+1);
         };
         if (d2frozen === false) {
-            roll2 = Math.floor(Math.random()*(6)+1);
+            roll[1] = Math.floor(Math.random()*(6)+1);
         };
         if (d3frozen === false) {
-            roll3 = Math.floor(Math.random()*(6)+1);
+            roll[2] = Math.floor(Math.random()*(6)+1);
         };
         if (d4frozen === false) {
-            roll4 = Math.floor(Math.random()*(6)+1);
+            roll[3] = Math.floor(Math.random()*(6)+1);
         };
         if (d5frozen === false) {
-            roll5 = Math.floor(Math.random()*(6)+1);
+            roll[4] = Math.floor(Math.random()*(6)+1);
         };
         rollCount += 1;
     };
@@ -119,108 +112,28 @@ function rollDice() {
 //Roll Button Programming
 rollButton.addEventListener("click", function() {
     rollDice();
-    // Load img for die 1 based on roll1 variable
-    if (parseInt(roll1) === 1) {
-        die[0].setAttribute("src", "img/die1.jpg");
-        die[0].setAttribute("alt", "one")
-    } else if (parseInt(roll1) === 2) {
-        die[0].setAttribute("src", "img/die2.jpg");
-        die[0].setAttribute("alt", "two");
-    } else if (parseInt(roll1) === 3) {
-        die[0].setAttribute("src", "img/die3.jpg");
-        die[0].setAttribute("alt", "three")
-    } else if (parseInt(roll1) === 4) {
-        die[0].setAttribute("src", "img/die4.jpg");
-        die[0].setAttribute("alt", "four")
-    } else if (parseInt(roll1) === 5) {
-        die[0].setAttribute("src", "img/die5.jpg");
-        die[0].setAttribute("alt", "five")
-    } else {
-        die[0].setAttribute("src", "img/die6.jpg");
-        die[0].setAttribute("alt", "six")
+    for (let i = 0; i < roll.length; i++) {
+        if (parseInt(roll[i]) === 1) {
+            die[i].setAttribute("src", "img/die1.jpg");
+            die[i].setAttribute("alt", "one")
+        } else if (parseInt(roll[i]) === 2) {
+            die[i].setAttribute("src", "img/die2.jpg");
+            die[i].setAttribute("alt", "two");
+        } else if (parseInt(roll[i]) === 3) {
+            die[i].setAttribute("src", "img/die3.jpg");
+            die[i].setAttribute("alt", "three")
+        } else if (parseInt(roll[i]) === 4) {
+            die[i].setAttribute("src", "img/die4.jpg");
+            die[i].setAttribute("alt", "four")
+        } else if (parseInt(roll[i]) === 5) {
+            die[i].setAttribute("src", "img/die5.jpg");
+            die[i].setAttribute("alt", "five")
+        } else {
+            die[i].setAttribute("src", "img/die6.jpg");
+            die[i].setAttribute("alt", "six")
+        }
     }
-
-    //Die 2 image selection
-    if (parseInt(roll2) === 1) {
-        die[1].setAttribute("src", "img/die1.jpg");
-        die[1].setAttribute("alt", "one")
-    } else if (parseInt(roll2) === 2) {
-        die[1].setAttribute("src", "img/die2.jpg");
-        die[1].setAttribute("alt", "two")
-    } else if (parseInt(roll2) === 3) {
-        die[1].setAttribute("src", "img/die3.jpg");
-        die[1].setAttribute("alt", "three")
-    } else if (parseInt(roll2) === 4) {
-        die[1].setAttribute("src", "img/die4.jpg");
-        die[1].setAttribute("alt", "four")
-    } else if (parseInt(roll2) === 5) {
-        die[1].setAttribute("src", "img/die5.jpg");
-        die[1].setAttribute("alt", "five")
-    } else {
-        die[1].setAttribute("src", "img/die6.jpg");
-        die[1].setAttribute("alt", "six")
-    }
-    //Die 3 image selection
-    if (parseInt(roll3) === 1) {
-        die[2].setAttribute("src", "img/die1.jpg");
-        die[2].setAttribute("alt", "one")
-    } else if (parseInt(roll3) === 2) {
-        die[2].setAttribute("src", "img/die2.jpg");
-        die[2].setAttribute("alt", "two")
-    } else if (parseInt(roll3) === 3) {
-        die[2].setAttribute("src", "img/die3.jpg");
-        die[2].setAttribute("alt", "three")
-    } else if (parseInt(roll3) === 4) {
-        die[2].setAttribute("src", "img/die4.jpg");
-        die[2].setAttribute("alt", "four")
-    } else if (parseInt(roll3) === 5) {
-        die[2].setAttribute("src", "img/die5.jpg");
-        die[2].setAttribute("alt", "five")
-    } else {
-        die[2].setAttribute("src", "img/die6.jpg");
-        die[2].setAttribute("alt", "six")
-    }
-    //Die 4 image selection
-    if (parseInt(roll4) === 1) {
-        die[3].setAttribute("src", "img/die1.jpg");
-        die[3].setAttribute("alt", "one")
-    } else if (parseInt(roll4) === 2) {
-        die[3].setAttribute("src", "img/die2.jpg");
-        die[3].setAttribute("alt", "two")
-    } else if (parseInt(roll4) === 3) {
-        die[3].setAttribute("src", "img/die3.jpg");
-        die[3].setAttribute("alt", "three")
-    } else if (parseInt(roll4) === 4) {
-        die[3].setAttribute("src", "img/die4.jpg");
-        die[3].setAttribute("alt", "four")
-    } else if (parseInt(roll4) === 5) {
-        die[3].setAttribute("src", "img/die5.jpg");
-        die[3].setAttribute("alt", "five")
-    } else {
-        die[3].setAttribute("src", "img/die6.jpg");
-        die[3].setAttribute("alt", "six")
-    }
-    //Die 5 image selection
-    if (parseInt(roll5) === 1) {
-        die[4].setAttribute("src", "img/die1.jpg");
-        die[4].setAttribute("alt", "one")
-    } else if (parseInt(roll5) === 2) {
-        die[4].setAttribute("src", "img/die2.jpg");
-        die[4].setAttribute("alt", "two")
-    } else if (parseInt(roll5) === 3) {
-        die[4].setAttribute("src", "img/die3.jpg");
-        die[4].setAttribute("alt", "three")
-    } else if (parseInt(roll5) === 4) {
-        die[4].setAttribute("src", "img/die4.jpg");
-        die[4].setAttribute("alt", "four")
-    } else if (parseInt(roll5) === 5) {
-        die[4].setAttribute("src", "img/die5.jpg");
-        die[4].setAttribute("alt", "five")
-    } else {
-        die[4].setAttribute("src", "img/die6.jpg");
-        die[4].setAttribute("alt", "six")
-    }
-});
+})
 
 
 // Score Check Variables
@@ -237,7 +150,7 @@ var acceptButton = document.getElementById("acceptButton")
 acceptButton.addEventListener("click", function() {
     rollCount = 0;
     // Store die in array and sort die by value
-    finalRoll = [roll1, roll2, roll3, roll4, roll5];
+    finalRoll = roll;
     finalRoll.sort();
     console.log(finalRoll);
 
