@@ -155,6 +155,11 @@ acceptButton.addEventListener("click", function() {
     console.log(finalRoll);
 
     // Add code to match dice roll to categories///////////////////////////////////////////////////////////////////////
+
+    // Enable/disable buttons based on dice value & buttons clicked ///////////////////////////////////////////////////
+    // Can select multiple score options after accepting roll /////////////////////////////////////////////////////////
+
+    
     // Ones
     if (finalRoll.includes(1) === true && onesAvail === true) {
         // Changes font color to blue if available, and red if selected
@@ -198,10 +203,6 @@ acceptButton.addEventListener("click", function() {
                 d5frozen = false;
                 die[4].style.border = "";
             }
-            /* Disable other scoring options, maybe use modal for scoring selection? /////////////////////////////////
-                Selecting multiple scoring options after accepting roll will result in points being awarded for each
-                category selected.
-            */
         });
     }
 
@@ -281,6 +282,144 @@ acceptButton.addEventListener("click", function() {
                 gameScore.innerHTML = score;
                 roundScore = 0;
                 threesAvail = false;
+                // Deselects any selected die after score option has been selected
+                d1frozen = false;
+                die[0].style.border = "";
+                d2frozen = false;
+                die[1].style.border = "";
+                d3frozen = false;
+                die[2].style.border = "";
+                d4frozen = false;
+                die[3].style.border = "";
+                d5frozen = false;
+                die[4].style.border = "";
+            }
+        });
+    }
+
+    // fours
+    if (finalRoll.includes(4) === true && foursAvail === true) {
+        // Changes font color to blue if available, and red if selected
+        console.log("fours available");
+        document.getElementById("fours").style.color = "blue";
+        fours.addEventListener("click", function() {
+            document.getElementById("fours").style.color = "red";
+            // Checks if fours are available, and sums total of threes
+            if (foursAvail === true) {
+                if (finalRoll[0] === 4) {
+                    roundScore += parseInt(finalRoll[0]);
+                }
+                if (finalRoll[1] === 4 ) {
+                    roundScore += parseInt(finalRoll[1]);
+                }
+                if (finalRoll[2] === 4 ) {
+                    roundScore += parseInt(finalRoll[2]);
+                }
+                if (finalRoll[3] === 4 ) {
+                    roundScore += parseInt(finalRoll[3]);
+                }
+                if (finalRoll[4] === 4 ) {
+                    roundScore += parseInt(finalRoll[4]);
+                }
+                // Updates score id in HTML based on # of ones in finalRoll
+                console.log("roundScore: " + roundScore);
+                score += parseInt(roundScore);
+                console.log("Game Score: " + score);
+                gameScore.innerHTML = score;
+                roundScore = 0;
+                foursAvail = false;
+                // Deselects any selected die after score option has been selected
+                d1frozen = false;
+                die[0].style.border = "";
+                d2frozen = false;
+                die[1].style.border = "";
+                d3frozen = false;
+                die[2].style.border = "";
+                d4frozen = false;
+                die[3].style.border = "";
+                d5frozen = false;
+                die[4].style.border = "";
+            }
+        });
+    }
+
+    // fives
+    if (finalRoll.includes(5) === true && fivesAvail === true) {
+        // Changes font color to blue if available, and red if selected
+        console.log("fives available");
+        document.getElementById("fives").style.color = "blue";
+        fives.addEventListener("click", function() {
+            document.getElementById("fives").style.color = "red";
+            // Checks if fives are available, and sums total of threes
+            if (fivesAvail === true) {
+                if (finalRoll[0] === 5) {
+                    roundScore += parseInt(finalRoll[0]);
+                }
+                if (finalRoll[1] === 5 ) {
+                    roundScore += parseInt(finalRoll[1]);
+                }
+                if (finalRoll[2] === 5 ) {
+                    roundScore += parseInt(finalRoll[2]);
+                }
+                if (finalRoll[3] === 5 ) {
+                    roundScore += parseInt(finalRoll[3]);
+                }
+                if (finalRoll[4] === 5 ) {
+                    roundScore += parseInt(finalRoll[4]);
+                }
+                // Updates score id in HTML based on # of ones in finalRoll
+                console.log("roundScore: " + roundScore);
+                score += parseInt(roundScore);
+                console.log("Game Score: " + score);
+                gameScore.innerHTML = score;
+                roundScore = 0;
+                fivesAvail = false;
+                // Deselects any selected die after score option has been selected
+                d1frozen = false;
+                die[0].style.border = "";
+                d2frozen = false;
+                die[1].style.border = "";
+                d3frozen = false;
+                die[2].style.border = "";
+                d4frozen = false;
+                die[3].style.border = "";
+                d5frozen = false;
+                die[4].style.border = "";
+            }
+        });
+    }
+
+    // Sixes
+    if (finalRoll.includes(6) === true && sixesAvail === true) {
+        // Changes font color to blue if available, and red if selected
+        console.log("sixes available");
+        document.getElementById("sixes").style.color = "blue";
+        sixes.addEventListener("click", function() {
+            document.getElementById("sixes").style.color = "red";
+            // Checks if sixes are available, and sums total of threes
+            if (sixesAvail === true) {
+                if (finalRoll[0] === 6) {
+                    roundScore += parseInt(finalRoll[0]);
+                }
+                if (finalRoll[1] === 6 ) {
+                    roundScore += parseInt(finalRoll[1]);
+                }
+                if (finalRoll[2] === 6 ) {
+                    roundScore += parseInt(finalRoll[2]);
+                }
+                if (finalRoll[3] === 6 ) {
+                    roundScore += parseInt(finalRoll[3]);
+                }
+                if (finalRoll[4] === 6 ) {
+                    roundScore += parseInt(finalRoll[4]);
+                }
+                // Updates score id in HTML based on # of ones in finalRoll
+                console.log("roundScore: " + roundScore);
+                score += parseInt(roundScore);
+                console.log("Game Score: " + score);
+                gameScore.innerHTML = score;
+                roundScore = 0;
+                sixesAvail = false;
                 // Deselects any selected die after score option has been selected
                 d1frozen = false;
                 die[0].style.border = "";
