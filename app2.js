@@ -143,6 +143,12 @@ var threesAvail = true;
 var foursAvail = true;
 var fivesAvail = true;
 var sixesAvail = true;
+var threeKindAvail = true;
+var fourKindAvail = true;
+var sStraightAvail = true;
+var lStraightAvail = true;
+var fiveKindAvail = true;
+var fiveKind2Avail = false; // will be changed to true after fiveKindAvail is claimed
 var gameScore = document.getElementById("gameScore");
 
 // Accept roll button
@@ -390,7 +396,8 @@ acceptButton.addEventListener("click", function() {
     }
 
     // Sixes
-    if (finalRoll.includes(6) === true && sixesAvail === true) {
+    if (finalRoll.includes(6) === true && sixesAvail === true) 
+    {
         // Changes font color to blue if available, and red if selected
         console.log("sixes available");
         document.getElementById("sixes").style.color = "blue";
@@ -434,4 +441,21 @@ acceptButton.addEventListener("click", function() {
             }
         });
     }
+
+    
+    // 3 of a kind
+    if ((finalRoll[0] == finalRoll[1] && finalRoll[0] == finalRoll[2]) || 
+    (finalRoll[1] == finalRoll[2] && finalRoll[1] == finalRoll[3]) || 
+    (finalRoll[2] == finalRoll[3] && finalRoll[2] == finalRoll[4])) {
+        console.log("3 of a kind available");
+        // Check if threeKindAvail /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        document.getElementById("threeKind").style.color = "blue";
+        threeKind.addEventListener("click", function() {
+            document.getElementById("threeKind").style.color = "red";
+            // Add total score of all five dice ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        });
+    }
+
 });
