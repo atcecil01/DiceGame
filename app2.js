@@ -158,7 +158,8 @@ acceptButton.addEventListener("click", function() {
     // Store die in array and sort die by value
     finalRoll = roll;
     finalRoll.sort();
-    console.log(finalRoll);
+    console.log("final roll: " + finalRoll);
+    console.log(finalRoll[0]);
 
     // Add code to match dice roll to categories///////////////////////////////////////////////////////////////////////
 
@@ -447,15 +448,22 @@ acceptButton.addEventListener("click", function() {
     if ((finalRoll[0] == finalRoll[1] && finalRoll[0] == finalRoll[2]) || 
     (finalRoll[1] == finalRoll[2] && finalRoll[1] == finalRoll[3]) || 
     (finalRoll[2] == finalRoll[3] && finalRoll[2] == finalRoll[4])) {
-        console.log("3 of a kind available");
-        // Check if threeKindAvail /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        document.getElementById("threeKind").style.color = "blue";
-        threeKind.addEventListener("click", function() {
-            document.getElementById("threeKind").style.color = "red";
-            // Add total score of all five dice ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        });
+        if (threeKindAvail === true) {
+            console.log("3 of a kind available");
+            document.getElementById("threeKind").style.color = "blue";
+            threeKind.addEventListener("click", function() {
+                document.getElementById("threeKind").style.color = "red";
+                threeKindAvail = false;
+                // Add total score of all five dice ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                for (let i = 0; i < finalRoll.length; i++) {
+                    roundScore += finalRoll[i];
+                }
+                console.log("RoundScore: " + roundScore);
+                score += parseInt(roundScore);
+                console.log("Game Score: " + score);
+                gameScore.innerHTML = score;
+            });
+        }
     }
 
 });
