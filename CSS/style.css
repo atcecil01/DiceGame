@@ -14,7 +14,9 @@ li {
 
 #mainTitle {
     text-align: center;
-    background-color: darkred;
+    background-color: rgb(53, 49, 49);
+    margin: 0;
+    padding-bottom: 1rem;
 }
 
 
@@ -26,6 +28,10 @@ li {
     border: 5px darkred solid;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+#scoreBlock, #diceTitle {
+    margin-left: 10px;
 }
 
 /* ---- Class Styles ---- */
@@ -51,8 +57,27 @@ li {
     max-width: 50px;
 }
 
-.list-button {
+.listButton:disabled {
     background-color: gray;
+    color: black;
+    padding: .4rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: .4rem;
+}
+
+.listButton {
+    background-color: yellow;
+    padding: .4rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    margin-bottom: .4rem;
+}
+
+.listButtonClaimed {
+    background-color: rgb(53, 49, 49);
     padding: .4rem;
     border-radius: 10px;
     border: none;
@@ -62,4 +87,4 @@ li {
 
 .wrapper {
     min-height: calc(100vh - 71px);
-} */
+}

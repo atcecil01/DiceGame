@@ -169,11 +169,11 @@ acceptButton.addEventListener("click", function() {
     
     // Ones
     if (finalRoll.includes(1) === true && onesAvail === true) {
-        // Changes font color to blue if available, and red if selected
+        // Activate ones if available
         console.log("ones available");
-        document.getElementById("ones").style.color = "blue";
+        document.getElementById("ones").disabled = false;
         ones.addEventListener("click", function() {
-            document.getElementById("ones").style.color = "red";
+            document.getElementById("ones").className = "listButtonClaimed";
             // Checks if ones are available, and sums total of ones
             if (onesAvail === true) {
                 if (finalRoll[0] === 1) {
@@ -209,6 +209,10 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                // Disabled all categories after selection ////////////////////////////////////////////////////////////////////////////////////////////
+
+                // for i in categoryList 
+                    // disable buttons if class = listButton
             }
         });
     }
@@ -217,9 +221,9 @@ acceptButton.addEventListener("click", function() {
     // Twos
     if (finalRoll.includes(2) === true && twosAvail === true) {
         console.log("twos available");
-        document.getElementById("twos").style.color = "blue";
+        document.getElementById("twos").disabled = false;
         twos.addEventListener("click", function() {
-            document.getElementById("twos").style.color = "red";
+            document.getElementById("twos").className = "listButtonClaimed";
             if (twosAvail === true) {
                 if (finalRoll[0] === 2) {
                     roundScore += parseInt(finalRoll[0]);
@@ -262,9 +266,9 @@ acceptButton.addEventListener("click", function() {
     if (finalRoll.includes(3) === true && threesAvail === true) {
         // Changes font color to blue if available, and red if selected
         console.log("threes available");
-        document.getElementById("threes").style.color = "blue";
+        document.getElementById("threes").disabled = false;
         threes.addEventListener("click", function() {
-            document.getElementById("threes").style.color = "red";
+            document.getElementById("threes").className = "listButtonClaimed";
             // Checks if threes are available, and sums total of threes
             if (threesAvail === true) {
                 if (finalRoll[0] === 3) {
@@ -308,9 +312,9 @@ acceptButton.addEventListener("click", function() {
     if (finalRoll.includes(4) === true && foursAvail === true) {
         // Changes font color to blue if available, and red if selected
         console.log("fours available");
-        document.getElementById("fours").style.color = "blue";
+        document.getElementById("fours").disabled = false;
         fours.addEventListener("click", function() {
-            document.getElementById("fours").style.color = "red";
+            document.getElementById("fours").className = "listButtonClaimed";
             // Checks if fours are available, and sums total of threes
             if (foursAvail === true) {
                 if (finalRoll[0] === 4) {
@@ -354,9 +358,9 @@ acceptButton.addEventListener("click", function() {
     if (finalRoll.includes(5) === true && fivesAvail === true) {
         // Changes font color to blue if available, and red if selected
         console.log("fives available");
-        document.getElementById("fives").style.color = "blue";
+        document.getElementById("fives").disabled = false;
         fives.addEventListener("click", function() {
-            document.getElementById("fives").style.color = "red";
+            document.getElementById("fives").className = "listButtonClaimed";
             // Checks if fives are available, and sums total of threes
             if (fivesAvail === true) {
                 if (finalRoll[0] === 5) {
@@ -401,9 +405,9 @@ acceptButton.addEventListener("click", function() {
     {
         // Changes font color to blue if available, and red if selected
         console.log("sixes available");
-        document.getElementById("sixes").style.color = "blue";
+        document.getElementById("sixes").disabled = false;
         sixes.addEventListener("click", function() {
-            document.getElementById("sixes").style.color = "red";
+            document.getElementById("sixes").className = "listButtonClaimed";
             // Checks if sixes are available, and sums total of threes
             if (sixesAvail === true) {
                 if (finalRoll[0] === 6) {
@@ -450,9 +454,9 @@ acceptButton.addEventListener("click", function() {
     (finalRoll[2] == finalRoll[3] && finalRoll[2] == finalRoll[4])) {
         if (threeKindAvail === true) {
             console.log("3 of a kind available");
-            document.getElementById("threeKind").style.color = "blue";
+            document.getElementById("threeKind").disabled = false;
             threeKind.addEventListener("click", function() {
-                document.getElementById("threeKind").style.color = "red";
+                document.getElementById("threeKind").className = "listButtonClaimed";
                 threeKindAvail = false;
                 // Add total score of all five dice ///////////////////////////////////////////////////////////////////////////////////////////////////////
                 for (let i = 0; i < finalRoll.length; i++) {

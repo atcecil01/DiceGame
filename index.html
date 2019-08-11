@@ -12,21 +12,21 @@
             <!-- Display dice combinations -->
             <div id="categories">
                 <h2>Categories:</h2>
-                <ul>
-                    <li><button type="button" class="list-button" id="ones">Ones</button></li>
-                    <li><button type="button" class="list-button" id="twos">Twos</button></li>
-                    <li><button type="button" class="list-button" id="threes">Threes</button></li>
-                    <li><button type="button" class="list-button" id="fours">Fours</button></li>
-                    <li><button type="button" class="list-button" id="fives">Fives</button></li>
-                    <li><button type="button" class="list-button" id="sixes">Sixes</button></li>
-                    <li><button type="button" class="list-button" id="threeKind">Three of a kind</button></li>
-                    <li><button type="button" class="list-button" id="fourKind">Four of a kind</button></li>
-                    <li><button type="button" class="list-button" id="fullHouse">Full House</button></li>
-                    <li><button type="button" class="list-button" id="sStraight">Small Straight</button></li>
-                    <li><button type="button" class="list-button" id="lStraight">Large Straight</button></li>
-                    <li><button type="button" class="list-button" id="chance">Chance</button></li>
-                    <li><button type="button" class="list-button" id="fiveKind">Five of a kind</button></li>
-                    <li><button type="button" class="list-button" id="fiveKind2">Five again!!</button></li>
+                <ul class="categoryList">
+                    <li><button type="button" class="listButton" id="ones" disabled>Ones</button></li>
+                    <li><button type="button" class="listButton" id="twos" disabled>Twos</button></li>
+                    <li><button type="button" class="listButton" id="threes" disabled>Threes</button></li>
+                    <li><button type="button" class="listButton" id="fours" disabled>Fours</button></li>
+                    <li><button type="button" class="listButton" id="fives" disabled>Fives</button></li>
+                    <li><button type="button" class="listButton" id="sixes" disabled>Sixes</button></li>
+                    <li><button type="button" class="listButton" id="threeKind" disabled>Three of a kind</button></li>
+                    <li><button type="button" class="listButton" id="fourKind" disabled>Four of a kind</button></li>
+                    <li><button type="button" class="listButton" id="fullHouse" disabled>Full House</button></li>
+                    <li><button type="button" class="listButton" id="sStraight" disabled>Small Straight</button></li>
+                    <li><button type="button" class="listButton" id="lStraight" disabled>Large Straight</button></li>
+                    <li><button type="button" class="listButton" id="chance" disabled>Chance</button></li>
+                    <li><button type="button" class="listButton" id="fiveKind" disabled>Five of a kind</button></li>
+                    <li><button type="button" class="listButton" id="fiveKind2" disabled>Five again!!</button></li>
                 </ul>
             </div>
 
@@ -34,7 +34,7 @@
             <div>
                 <button id="rollButton" class="button">Roll!</button>
                 <button id="acceptButton" class="button">Accept Roll</button>
-                <!-- Add reset game button -->
+                <!-- Add reset game button --------------------------------------------------------------------------------------------------------->
             </div>
 
             <div id="scoreBlock">
@@ -43,7 +43,7 @@
             </div>
 
             <!-- Display dice roll -->
-            <h2>You Rolled: </h2>
+            <h2 id="diceTitle">You Rolled:</h2>
             <div class="diceDisplay">
                 <img src="img/die1.jpg" alt="One" id="d1"></img>
                 <img src="img/die1.jpg" alt="One" id="d2"></img>
