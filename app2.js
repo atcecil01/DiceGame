@@ -1,6 +1,9 @@
 
+/*---------------------------------------------------------------
+------------------------ Declare Variables ----------------------
+---------------------------------------------------------------*/
 
-//Selecting dice before first roll results in 6s?///////////////////////////////////////////////////////////////////////
+//Selecting dice before first roll results in 6s?//////////////////////////////////////////////////////////////////////////////////
 
 //Define variables
 var roll = []
@@ -10,7 +13,7 @@ var roundScore = 0;
 
 // Define boolean variable to freeze selected dice during next roll
 
-// Try defining frozen dice using an array or object ///////////////////////////////////////////////////////////////////
+// Try defining frozen dice using an array or object //////////////////////////////////////////////////////////////////////////////
 
 var d1frozen = false;
 var d2frozen = false;
@@ -20,24 +23,47 @@ var d5frozen = false;
 
 //Load Dice image elements into variables
 var rollButton = document.getElementById("rollButton");
-
 var die = [document.getElementById('d1'), document.getElementById('d2'), document.getElementById('d3'), document.getElementById('d4'), document.getElementById('d5')]
 
-//Load categories elements into variables
-var ones = document.getElementById("ones");
-var twos = document.getElementById("twos");
-var threes = document.getElementById("threes");
-var fours = document.getElementById("fours");
-var fives = document.getElementById("fives");
-var sixes = document.getElementById("sixes");
-var threeKind = document.getElementById("threeKind");
-var fourKind = document.getElementById("fourKind");
-var fullHouse = document.getElementById("fullHouse");
-var sStraight = document.getElementById("sStraight");
-var lStraight = document.getElementById("lStraight");
-var chance = document.getElementById("chance");
-var fiveKind = document.getElementById("fiveKind");
-var fiveKind2 = document.getElementById("fiveKind2");
+// //Load categories elements into variables
+// var ones = document.getElementById("ones");
+// var twos = document.getElementById("twos");
+// var threes = document.getElementById("threes");
+// var fours = document.getElementById("fours");
+// var fives = document.getElementById("fives");
+// var sixes = document.getElementById("sixes");
+// var threeKind = document.getElementById("threeKind");
+// var fourKind = document.getElementById("fourKind");
+// var fullHouse = document.getElementById("fullHouse");
+// var sStraight = document.getElementById("sStraight");
+// var lStraight = document.getElementById("lStraight");
+// var chance = document.getElementById("chance");
+// var fiveKind = document.getElementById("fiveKind");
+// var fiveKind2 = document.getElementById("fiveKind2");
+
+// Define categories in an array /////////////////////////////////////////////////////////////////////////
+var categoryArray = [document.getElementById("ones"), document.getElementById("twos"), document.getElementById("threes"), document.getElementById("fours"), document.getElementById("fives"), document.getElementById("sixes"), document.getElementById("threeKind"), document.getElementById("fourKind"), document.getElementById("fullHouse"), document.getElementById("sStraight"), document.getElementById("lStraight"), document.getElementById("chance"), document.getElementById("fiveKind"), document.getElementById("fiveKind2")]
+
+// Score Check Variables
+var onesAvail = true;
+var twosAvail = true;
+var threesAvail = true;
+var foursAvail = true;
+var fivesAvail = true;
+var sixesAvail = true;
+var threeKindAvail = true;
+var fourKindAvail = true;
+var sStraightAvail = true;
+var lStraightAvail = true;
+var fiveKindAvail = true;
+var fiveKind2Avail = false; // will be changed to true after fiveKindAvail is claimed
+var gameScore = document.getElementById("gameScore");
+
+
+/*---------------------------------------------------------------
+------------------------ Begin Code -----------------------------
+---------------------------------------------------------------*/
+
 
 // onclick to freeze/unfreeze dice
 die[0].addEventListener("click", function() {
@@ -86,7 +112,12 @@ die[4].addEventListener("click", function() {
     }
 });
 
-// Define rollDice function
+
+/*---------------------------------------------------------------
+----------------------- rollDice Function -----------------------
+---------------------------------------------------------------*/
+
+
 function rollDice() {
     // Math.random to get a random number between 1 and 6
     if (rollCount < 3) {
@@ -109,7 +140,12 @@ function rollDice() {
     };
 }
 
-//Roll Button Programming
+
+/*---------------------------------------------------------------
+-------------------------- Roll Button --------------------------
+---------------------------------------------------------------*/
+
+
 rollButton.addEventListener("click", function() {
     rollDice();
     for (let i = 0; i < roll.length; i++) {
@@ -136,25 +172,15 @@ rollButton.addEventListener("click", function() {
 })
 
 
-// Score Check Variables
-var onesAvail = true;
-var twosAvail = true;
-var threesAvail = true;
-var foursAvail = true;
-var fivesAvail = true;
-var sixesAvail = true;
-var threeKindAvail = true;
-var fourKindAvail = true;
-var sStraightAvail = true;
-var lStraightAvail = true;
-var fiveKindAvail = true;
-var fiveKind2Avail = false; // will be changed to true after fiveKindAvail is claimed
-var gameScore = document.getElementById("gameScore");
+/*---------------------------------------------------------------
+---------------------- Accept Roll Button -----------------------
+---------------------------------------------------------------*/
 
-// Accept roll button
+
 var acceptButton = document.getElementById("acceptButton")
 acceptButton.addEventListener("click", function() {
     rollCount = 0;
+    rollButton.disabled = true;
     // Store die in array and sort die by value
     finalRoll = roll;
     finalRoll.sort();
@@ -172,7 +198,7 @@ acceptButton.addEventListener("click", function() {
         // Activate ones if available
         console.log("ones available");
         document.getElementById("ones").disabled = false;
-        ones.addEventListener("click", function() {
+        categoryArray[0].addEventListener("click", function() {
             document.getElementById("ones").className = "listButtonClaimed";
             // Checks if ones are available, and sums total of ones
             if (onesAvail === true) {
@@ -209,10 +235,13 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
-                // Disabled all categories after selection ////////////////////////////////////////////////////////////////////////////////////////////
-
-                // for i in categoryList 
-                    // disable buttons if class = listButton
+                rollButton.disabled = false;
+                // Disable all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                }                    
             }
         });
     }
@@ -222,7 +251,7 @@ acceptButton.addEventListener("click", function() {
     if (finalRoll.includes(2) === true && twosAvail === true) {
         console.log("twos available");
         document.getElementById("twos").disabled = false;
-        twos.addEventListener("click", function() {
+        categoryArray[1].addEventListener("click", function() {
             document.getElementById("twos").className = "listButtonClaimed";
             if (twosAvail === true) {
                 if (finalRoll[0] === 2) {
@@ -258,6 +287,14 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
             }
         });
     }
@@ -267,7 +304,7 @@ acceptButton.addEventListener("click", function() {
         // Changes font color to blue if available, and red if selected
         console.log("threes available");
         document.getElementById("threes").disabled = false;
-        threes.addEventListener("click", function() {
+        categoryArray[2].addEventListener("click", function() {
             document.getElementById("threes").className = "listButtonClaimed";
             // Checks if threes are available, and sums total of threes
             if (threesAvail === true) {
@@ -304,6 +341,14 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
             }
         });
     }
@@ -313,7 +358,7 @@ acceptButton.addEventListener("click", function() {
         // Changes font color to blue if available, and red if selected
         console.log("fours available");
         document.getElementById("fours").disabled = false;
-        fours.addEventListener("click", function() {
+        categoryArray[3].addEventListener("click", function() {
             document.getElementById("fours").className = "listButtonClaimed";
             // Checks if fours are available, and sums total of threes
             if (foursAvail === true) {
@@ -350,6 +395,14 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
             }
         });
     }
@@ -359,7 +412,7 @@ acceptButton.addEventListener("click", function() {
         // Changes font color to blue if available, and red if selected
         console.log("fives available");
         document.getElementById("fives").disabled = false;
-        fives.addEventListener("click", function() {
+        categoryArray[4].addEventListener("click", function() {
             document.getElementById("fives").className = "listButtonClaimed";
             // Checks if fives are available, and sums total of threes
             if (fivesAvail === true) {
@@ -396,6 +449,14 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
             }
         });
     }
@@ -406,7 +467,7 @@ acceptButton.addEventListener("click", function() {
         // Changes font color to blue if available, and red if selected
         console.log("sixes available");
         document.getElementById("sixes").disabled = false;
-        sixes.addEventListener("click", function() {
+        categoryArray[5].addEventListener("click", function() {
             document.getElementById("sixes").className = "listButtonClaimed";
             // Checks if sixes are available, and sums total of threes
             if (sixesAvail === true) {
@@ -443,31 +504,102 @@ acceptButton.addEventListener("click", function() {
                 die[3].style.border = "";
                 d5frozen = false;
                 die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
             }
         });
     }
 
     
     // 3 of a kind
-    if ((finalRoll[0] == finalRoll[1] && finalRoll[0] == finalRoll[2]) || 
-    (finalRoll[1] == finalRoll[2] && finalRoll[1] == finalRoll[3]) || 
-    (finalRoll[2] == finalRoll[3] && finalRoll[2] == finalRoll[4])) {
+    if ((finalRoll[0] == finalRoll[2]) || (finalRoll[1] == finalRoll[3]) || (finalRoll[2] == finalRoll[4])) {
         if (threeKindAvail === true) {
             console.log("3 of a kind available");
             document.getElementById("threeKind").disabled = false;
-            threeKind.addEventListener("click", function() {
-                document.getElementById("threeKind").className = "listButtonClaimed";
-                threeKindAvail = false;
-                // Add total score of all five dice ///////////////////////////////////////////////////////////////////////////////////////////////////////
-                for (let i = 0; i < finalRoll.length; i++) {
-                    roundScore += finalRoll[i];
+            categoryArray[6].addEventListener("click", function() {
+                if (threeKindAvail === true) {
+                    document.getElementById("threeKind").className = "listButtonClaimed";
+                    // Add total score of all five dice
+                    roundScore = 0;
+                    for (let i = 0; i < finalRoll.length; i++) {
+                        roundScore += finalRoll[i];
+                    }
+                    console.log("RoundScore: " + roundScore);
+                    score += parseInt(roundScore);
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate 3 kind button
+                    threeKindAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
                 }
-                console.log("RoundScore: " + roundScore);
-                score += parseInt(roundScore);
-                console.log("Game Score: " + score);
-                gameScore.innerHTML = score;
             });
         }
     }
 
+    // 4 of a kind
+    if ((finalRoll[0] == finalRoll[3]) || (finalRoll[1] == finalRoll[4])) {
+        if (fourKindAvail === true) {
+            console.log("4 of a kind available");
+            document.getElementById("fourKind").disabled = false;
+            categoryArray[7].addEventListener("click", function() {
+                if (fourKindAvail === true) {
+                    document.getElementById("fourKind").className = "listButtonClaimed";
+                    // Add total score of all five dice
+                    roundScore = 0;
+                    for (let i = 0; i < finalRoll.length; i++) {
+                        roundScore += finalRoll[i];
+                    }
+                    console.log("RoundScore: " + roundScore);
+                    score += parseInt(roundScore);
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate 4 kind button
+                    fourKindAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
 });
