@@ -53,10 +53,12 @@ var fivesAvail = true;
 var sixesAvail = true;
 var threeKindAvail = true;
 var fourKindAvail = true;
+var fullHouseAvail = true;
 var sStraightAvail = true;
 var lStraightAvail = true;
+var chanceAvail = true;
 var fiveKindAvail = true;
-var fiveKind2Avail = false; // will be changed to true after fiveKindAvail is claimed
+var fiveKind2Avail = true;
 var gameScore = document.getElementById("gameScore");
 
 
@@ -526,7 +528,6 @@ acceptButton.addEventListener("click", function() {
                 if (threeKindAvail === true) {
                     document.getElementById("threeKind").className = "listButtonClaimed";
                     // Add total score of all five dice
-                    roundScore = 0;
                     for (let i = 0; i < finalRoll.length; i++) {
                         roundScore += finalRoll[i];
                     }
@@ -534,6 +535,7 @@ acceptButton.addEventListener("click", function() {
                     score += parseInt(roundScore);
                     console.log("Game Score: " + score);
                     gameScore.innerHTML = score;
+                    roundScore = 0;
                     // Deactivate 3 kind button
                     threeKindAvail = false;
                     // Deselects any selected die after score option has been selected
@@ -569,7 +571,6 @@ acceptButton.addEventListener("click", function() {
                 if (fourKindAvail === true) {
                     document.getElementById("fourKind").className = "listButtonClaimed";
                     // Add total score of all five dice
-                    roundScore = 0;
                     for (let i = 0; i < finalRoll.length; i++) {
                         roundScore += finalRoll[i];
                     }
@@ -577,8 +578,243 @@ acceptButton.addEventListener("click", function() {
                     score += parseInt(roundScore);
                     console.log("Game Score: " + score);
                     gameScore.innerHTML = score;
+                    roundScore = 0;
                     // Deactivate 4 kind button
                     fourKindAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
+
+    // Full house
+    if ((finalRoll[0] == finalRoll[2] && finalRoll[3] == finalRoll[4]) || (finalRoll[0] == finalRoll[1] && finalRoll[2] == finalRoll[4])) {
+        if (fullHouseAvail === true) {
+            console.log("Full House available");
+            document.getElementById("fullHouse").disabled = false;
+            categoryArray[8].addEventListener("click", function() {
+                if (fullHouseAvail === true) {
+                    document.getElementById("fullHouse").className = "listButtonClaimed";
+                    console.log("RoundScore: 25pts");
+                    score += 25;
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate fullHouse button
+                    fullHouseAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
+
+    // Small Straight
+    if ((finalRoll.includes(1) && finalRoll.includes(2) && finalRoll.includes(3) && finalRoll.includes(4)) || 
+    (finalRoll.includes(2) && finalRoll.includes(3) && finalRoll.includes(4) && finalRoll.includes(5)) ||
+    (finalRoll.includes(3) && finalRoll.includes(4) && finalRoll.includes(5) && finalRoll.includes(6))) {
+        if (sStraightAvail === true) {
+            console.log("Small Straight available");
+            document.getElementById("sStraight").disabled = false;
+            categoryArray[9].addEventListener("click", function() {
+                if (sStraightAvail === true) {
+                    document.getElementById("sStraight").className = "listButtonClaimed";
+                    console.log("RoundScore: 30pts");
+                    score += 30;
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate fullHouse button
+                    sStraightAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
+
+    // Large Straight
+    if ((finalRoll.includes(1) && finalRoll.includes(2) && finalRoll.includes(3) && finalRoll.includes(4) && finalRoll.includes(5)) || 
+    (finalRoll.includes(2) && finalRoll.includes(3) && finalRoll.includes(4) && finalRoll.includes(5) && finalRoll.includes(6))) {
+        if (lStraightAvail === true) {
+            console.log("Large Straight available");
+            document.getElementById("lStraight").disabled = false;
+            categoryArray[10].addEventListener("click", function() {
+                if (lStraightAvail === true) {
+                    document.getElementById("lStraight").className = "listButtonClaimed";
+                    console.log("RoundScore: 40pts");
+                    score += 40;
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate fullHouse button
+                    lStraightAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
+
+    // Chance
+    if (chanceAvail === true) {
+        console.log("Chance available");
+        document.getElementById("chance").disabled = false;
+        categoryArray[11].addEventListener("click", function() {
+            if (chanceAvail === true) {
+                document.getElementById("chance").className = "listButtonClaimed";
+                // Add total score of all five dice
+                for (let i = 0; i < finalRoll.length; i++) {
+                    roundScore += finalRoll[i];
+                }
+                console.log("RoundScore: " + roundScore);
+                score += parseInt(roundScore);
+                console.log("Game Score: " + score);
+                gameScore.innerHTML = score;
+                roundScore = 0;
+                // Deactivate 3 kind button
+                chanceAvail = false;
+                // Deselects any selected die after score option has been selected
+                d1frozen = false;
+                die[0].style.border = "";
+                d2frozen = false;
+                die[1].style.border = "";
+                d3frozen = false;
+                die[2].style.border = "";
+                d4frozen = false;
+                die[3].style.border = "";
+                d5frozen = false;
+                die[4].style.border = "";
+                rollButton.disabled = false;
+                // Disabled all categories after selection
+                for (let i = 0; i < categoryArray.length; i++) {
+                    // disable buttons if class = listButton
+                    if (categoryArray[i].className === "listButton") {
+                        categoryArray[i].disabled = true;
+                    }
+                } 
+            }
+        });
+    }
+
+    // 5 of a kind
+    if ((finalRoll[0] == finalRoll[4])) {
+        if (fiveKindAvail === true) {
+            console.log("5 of a kind available");
+            document.getElementById("fiveKind").disabled = false;
+            categoryArray[12].addEventListener("click", function() {
+                if (fiveKindAvail === true) {
+                    document.getElementById("fiveKind").className = "listButtonClaimed";
+                    console.log("RoundScore: 50pts");
+                    score += 50;
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate 5 kind button
+                    fiveKindAvail = false;
+                    // Deselects any selected die after score option has been selected
+                    d1frozen = false;
+                    die[0].style.border = "";
+                    d2frozen = false;
+                    die[1].style.border = "";
+                    d3frozen = false;
+                    die[2].style.border = "";
+                    d4frozen = false;
+                    die[3].style.border = "";
+                    d5frozen = false;
+                    die[4].style.border = "";
+                    rollButton.disabled = false;
+                    // Disabled all categories after selection
+                    for (let i = 0; i < categoryArray.length; i++) {
+                        // disable buttons if class = listButton
+                        if (categoryArray[i].className === "listButton") {
+                            categoryArray[i].disabled = true;
+                        }
+                    } 
+                }
+            });
+        }
+    }
+
+    // 5 of a kind 2
+    if ((finalRoll[0] == finalRoll[4])) {
+        if (fiveKind2Avail === true && fiveKindAvail === false) {
+            console.log("5 of a kind 2 available");
+            document.getElementById("fiveKind2").disabled = false;
+            categoryArray[13].addEventListener("click", function() {
+                if (fiveKind2Avail === true) {
+                    document.getElementById("fiveKind2").className = "listButtonClaimed";
+                    console.log("RoundScore: 100pts");
+                    score += 100;
+                    console.log("Game Score: " + score);
+                    gameScore.innerHTML = score;
+                    // Deactivate 5 kind button
+                    fiveKind2Avail = false;
                     // Deselects any selected die after score option has been selected
                     d1frozen = false;
                     die[0].style.border = "";
